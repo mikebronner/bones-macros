@@ -41,6 +41,9 @@ The following methods are available to use:
 
 // provides a select list with a range of intervals
 {{ Form::selectRangeWithInterval($name, $start, $end, $interval, $default = null, $attributes = []) }}
+
+// provides ability to slugify any text
+{{ HTML::slugify($text) }}
 ```
 
 ## Dependencies

@@ -1,6 +1,5 @@
 <?php namespace Genealabs\BonesMacros;
 
-use Illuminate\Html\HtmlBuilder;
 use Illuminate\Support\ServiceProvider;
 
 class BonesMacrosServiceProvider extends ServiceProvider {

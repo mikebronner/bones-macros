@@ -1,6 +1,6 @@
 {
     "name": "genealabs/bones-macros",
-    "description": "useful form macros for Laravel's Blade template engine.",
+    "description": "Useful form macros for Laravel's Blade template engine.",
     "license": "MIT",
     "authors": [
         {
