@@ -22,7 +22,7 @@ or add it to you composer.json file:
 And then add the service provider to your app.php config file:
 ```php
 	// 'providers' => array(
-		'GeneaLabs\BonesFlash\BonesMacrosServiceProvider',
+		'GeneaLabs\BonesMacros\BonesMacrosServiceProvider',
     // );
 ```
 

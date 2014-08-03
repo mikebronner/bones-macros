@@ -1,25 +1,15 @@
 <?php namespace Genealabs\BonesMacros;
 
+use Illuminate\Html\HtmlBuilder;
 use Illuminate\Support\ServiceProvider;
 
 class BonesMacrosServiceProvider extends ServiceProvider {
-
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
-
-	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->package('genealabs/bones-macros');
-	}
+	protected $defer = true;
 
 	/**
 	 * Register the service provider.
@@ -29,22 +19,19 @@ class BonesMacrosServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->registerHtmlBuilder();
+
 		$this->registerFormBuilder();
 	}
 
 	/**
-	 * Get the services provided by the provider.
+	 * Register the HTML builder instance.
 	 *
-	 * @return array
+	 * @return void
 	 */
-	public function provides()
-	{
-		return ['html', 'form'];
-	}
-
 	protected function registerHtmlBuilder()
 	{
-		$this->app->bindShared('html', function ($app) {
+		$this->app->bindShared('html', function($app)
+		{
 			return new HtmlBuilder($app['url']);
 		});
 	}
@@ -56,10 +43,22 @@ class BonesMacrosServiceProvider extends ServiceProvider {
 	 */
 	protected function registerFormBuilder()
 	{
-		$this->app->bindShared('form', function ($app) {
+		$this->app->bindShared('form', function($app)
+		{
 			$form = new FormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
 
 			return $form->setSessionStore($app['session.store']);
 		});
 	}
+
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return array('html', 'form');
+	}
+
 }

@@ -1,12 +1,12 @@
-<?php namespace InvestorExperts\HTML;
+<?php namespace Genealabs\BonesMacros;
 
-use Illuminate\Html\FormBuilder as FB;
+//use Illuminate\Html\FormBuilder as FB;
 
 /**
  * Class FormBuilder
  * @package InvestorExperts\HTML
  */
-class FormBuilder extends FB
+class FormBuilder extends \Illuminate\Html\FormBuilder
 {
     /**
      * @return string
