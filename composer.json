@@ -1,0 +1,23 @@
+{
+    "name": "genealabs/bones-macros",
+    "description": "",
+    "authors": [
+        {
+            "name": "GeneaLabs, LLC",
+            "email": "info@genealabs.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Genealabs\\BonesMacros\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
