@@ -9,7 +9,7 @@ class HtmlServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = true;
+	protected $defer = false;
 
     public function boot()
     {
