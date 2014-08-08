@@ -20,7 +20,7 @@
         "classmap": [
             "src/migrations"
         ],
-        "psr-0": {
+        "psr-4": {
             "GeneaLabs\\Bones\\Macros\\": "src/GeneaLabs/Bones/Macros/"
         }
     },
