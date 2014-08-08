@@ -11,6 +11,11 @@ class HtmlServiceProvider extends ServiceProvider {
 	 */
 	protected $defer = true;
 
+    public function boot()
+    {
+    		$this->package('genealabs/bones-macros');
+    }
+    
 	/**
 	 * Register the service provider.
 	 *
