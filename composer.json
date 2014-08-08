@@ -20,8 +20,8 @@
         "classmap": [
             "src/migrations"
         ],
-        "psr-0": {
-            "Genealabs\\BonesMacros\\": "src/"
+        "psr-4": {
+            "GeneaLabs\\Bones\\Macros\\": "src/GeneaLabs/Bones/Macros/"
         }
     },
     "minimum-stability": "stable"

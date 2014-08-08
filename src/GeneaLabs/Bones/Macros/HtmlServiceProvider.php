@@ -1,8 +1,9 @@
-<?php namespace Genealabs\BonesMacros;
+<?php namespace GeneaLabs\Bones\Macros;
 
 use Illuminate\Support\ServiceProvider;
 
-class BonesMacrosServiceProvider extends ServiceProvider {
+class HtmlServiceProvider extends ServiceProvider {
+
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
@@ -55,9 +56,9 @@ class BonesMacrosServiceProvider extends ServiceProvider {
 	 *
 	 * @return array
 	 */
-	public function provides()
-	{
-		return array('html', 'form');
-	}
+//	public function provides()
+//	{
+//		return array('html', 'form');
+//	}
 
 }

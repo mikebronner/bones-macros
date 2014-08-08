@@ -1,16 +1,7 @@
-<?php namespace Genealabs\BonesMacros;
+<?php namespace GeneaLabs\Bones\Macros;
 
-//use Illuminate\Html\FormBuilder as FB;
-
-/**
- * Class FormBuilder
- * @package InvestorExperts\HTML
- */
 class FormBuilder extends \Illuminate\Html\FormBuilder
 {
-    /**
-     * @return string
-     */
     public function cancelButton()
     {
         return '<a href="' .

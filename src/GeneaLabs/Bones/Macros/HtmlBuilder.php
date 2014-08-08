@@ -1,4 +1,4 @@
-<?php namespace Genealabs\BonesMacros;
+<?php namespace GeneaLabs\Bones\Macros;
 
 /**
  * Class HtmlBuilder
