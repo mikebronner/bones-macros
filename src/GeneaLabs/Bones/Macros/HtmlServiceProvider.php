@@ -13,7 +13,7 @@ class HtmlServiceProvider extends ServiceProvider {
 
     public function boot()
     {
-    	//	$this->package('genealabs/bones-macros');
+    	$this->package('genealabs/bones-macros');
     }
 
 	/**
