@@ -23,9 +23,14 @@ class HtmlServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+	    //$this->unregisterHtmlServiceProvider();
 		$this->registerHtmlBuilder();
-
 		$this->registerFormBuilder();
+	}
+
+	protected function unregisterHtmlServiceProvider()
+	{
+
 	}
 
 	/**
@@ -61,9 +66,9 @@ class HtmlServiceProvider extends ServiceProvider {
 	 *
 	 * @return array
 	 */
-//	public function provides()
-//	{
-//		return array('html', 'form');
-//	}
+	public function provides()
+	{
+		return array('html', 'form');
+	}
 
 }
