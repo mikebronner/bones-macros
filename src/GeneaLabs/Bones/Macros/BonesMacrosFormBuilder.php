@@ -1,6 +1,6 @@
 <?php namespace GeneaLabs\Bones\Macros;
 
-class FormBuilder extends \Illuminate\Html\FormBuilder
+class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 {
     public function cancelButton()
     {

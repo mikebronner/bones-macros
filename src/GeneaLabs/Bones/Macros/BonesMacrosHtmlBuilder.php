@@ -4,7 +4,7 @@
  * Class HtmlBuilder
  * @package InvestorExperts\HTML
  */
-class HtmlBuilder extends \Illuminate\Html\HtmlBuilder
+class BonesMacrosHtmlBuilder extends \Illuminate\Html\HtmlBuilder
 {
 	public static function slugify($text)
 	{
