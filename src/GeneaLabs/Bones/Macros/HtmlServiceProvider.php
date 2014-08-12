@@ -40,9 +40,9 @@ class HtmlServiceProvider extends ServiceProvider {
 	 */
 	protected function registerHtmlBuilder()
 	{
-		$this->app->bind('html', function($app)
+		$this->app->bindShared('html', function($app)
 		{
-			return new HtmlBuilder($app['url']);
+			return new GeneaLabs\Bones\Macros\HtmlBuilder($app['url']);
 		});
 	}
 
@@ -53,9 +53,9 @@ class HtmlServiceProvider extends ServiceProvider {
 	 */
 	protected function registerFormBuilder()
 	{
-		$this->app->bind('form', function($app)
+		$this->app->bindShared('form', function($app)
 		{
-			$form = new FormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
+			$form = new GeneaLabs\Bones\Macros\FormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
 
 			return $form->setSessionStore($app['session.store']);
 		});
