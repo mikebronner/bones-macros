@@ -40,7 +40,7 @@ class HtmlServiceProvider extends ServiceProvider {
 	 */
 	protected function registerHtmlBuilder()
 	{
-		$this->app->bindShared('html', function($app)
+		$this->app->bind('html', function($app)
 		{
 			return new HtmlBuilder($app['url']);
 		});
@@ -53,7 +53,7 @@ class HtmlServiceProvider extends ServiceProvider {
 	 */
 	protected function registerFormBuilder()
 	{
-		$this->app->bindShared('form', function($app)
+		$this->app->bind('form', function($app)
 		{
 			$form = new FormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
 
