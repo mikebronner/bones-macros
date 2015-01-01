@@ -152,12 +152,10 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $output;
 	}
 
-	protected function preHtml($label = null, $name, $errors = null)
+	protected function preHtml($label = null, $name = null, $errors = null)
 	{
-		$html = '<div class="form-group' . (is_null($label) ? ' col-sm-offset-' . $this->labelWidth : '') . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
-		if (! is_null($label)) {
-			$html .= $this->label($name, $label, ['class' => 'control-label col-sm-' . $this->labelWidth]);
-		}
+		$html = '<div class="form-group' . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
+		$html .= $this->label($name, $label, ['class' => 'control-label col-sm-' . $this->labelWidth]);
 		$html .= '<div class="col-sm-' . $this->fieldWidth . '">';
 
 		return $html;
