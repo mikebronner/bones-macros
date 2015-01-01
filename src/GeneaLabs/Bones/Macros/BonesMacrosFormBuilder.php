@@ -138,9 +138,9 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		$html = $this->preHtml(null, null, $errors);
 
 		if ($withCancelButton) {
-			$html = '<div class="form-group">'
+			$html = '<div class="form-group"><div class="col-sm-' . $this->labelWidth . '">'
 		        . link_to($this->url->previous(), 'Cancel', ['class' => 'btn btn-cancel pull-right'])
-				. '<div class="col-sm-' . $this->fieldWidth . '">';
+				. '</div><div class="col-sm-' . $this->fieldWidth . '">';
 		}
 
 		$html .= $this->input('submit', null, $value, $options);
