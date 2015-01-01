@@ -6,12 +6,12 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 	public $labelWidth;
 	public $fieldWidth;
 
-    public function cancelButton()
-    {
-        return '<a href="' .
-            $this->url->previous() . '">' .
-            $this->button('Cancel', ['class' => 'btn btn-cancel   pull-right']) . '</a>';
-    }
+	public function cancelButton()
+	{
+		return '<a href="' .
+		       $this->url->previous() . '">' .
+		       $this->button('Cancel', ['class' => 'btn btn-cancel   pull-right']) . '</a>';
+	}
 
 	public function selectRangeWithInterval($name, $start, $end, $interval, $default = null, $attributes = [])
 	{
@@ -46,7 +46,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 	}
 
 
-	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], $errors = null)
+	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->selectRangeWithInterval(
@@ -59,88 +59,104 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 			),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-	public function bs_select($label, $name, $list = array(), $selected = null, array $options = [], $errors = null)
+	public function bs_select($label, $name, $list = array(), $selected = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->select($name, $list, $selected, $options),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-	public function bs_text($label, $name, $value = null, array $options = [], $errors = null)
+	public function bs_text($label, $name, $value = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->input('text', $name, $value, $options),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-	public function bs_password($label, $name, array $options = [], array $errors = null)
+	public function bs_password($label, $name, array $options = [], array $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->input('password', $name, '', $options),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-	public function bs_email($label, $name, $value = null, array $options = [], $errors = null)
+	public function bs_email($label, $name, $value = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->input('email', $name, $value, $options),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-	public function bs_url($label, $name, $value = null, array $options = [], $errors = null)
+	public function bs_url($label, $name, $value = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->input('url', $name, $value, $options),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-	public function bs_file($label, $name, array $options = [], $errors = null)
+	public function bs_file($label, $name, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->input('file', $name, null, $options),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-	public function bs_textarea($label, $name, $value = null, array $options = [], $errors = null)
+	public function bs_textarea($label, $name, $value = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->textarea($name, $value, $options),
 			$label,
 			$name,
-			$errors
+			$errors,
+			$extraElement,
+			$extraWidth
 		);
 	}
 
-    public function bs_submit($label = null, $value = null, array $options = [], $errors = null, $cancelUrl = null)
+	public function bs_submit($label = null, $value = null, array $options = [], $errors = null, $cancelUrl = null)
 	{
 		$html = $this->preHtml(null, null, $errors);
 
-		if ($cancelUrl) {
+		if (! is_null($cancelUrl)) {
 			$html = '<div class="form-group"><div class="col-sm-' . $this->labelWidth . '">'
-		        . link_to($cancelUrl, 'Cancel', ['class' => 'btn btn-cancel pull-right'])
-				. '</div><div class="col-sm-' . $this->fieldWidth . '">';
+			        . link_to($cancelUrl, 'Cancel', ['class' => 'btn btn-cancel pull-right'])
+			        . '</div><div class="col-sm-' . $this->fieldWidth . '">';
 		}
 
 		$html .= $this->input('submit', null, $value, $options);
@@ -149,11 +165,11 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	protected function wrapOutput($html = '', $label = null, $name, $errors = null)
+	protected function wrapOutput($html = '', $label = null, $name, $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		$output = $this->preHtml($label, $name, $errors);
 		$output .= $html;
-		$output .= $this->postHtml($name, $errors);
+		$output .= $this->postHtml($name, $errors, $extraElement, $extraWidth);
 
 		return $output;
 	}
@@ -167,9 +183,11 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	protected function postHtml($name, $errors = null)
+	protected function postHtml($name, $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		$html = '';
+		$hasExtras = (strlen($extraElement) && $extraWidth > 0);
+		$fieldWidth = ($hasExtras ? $fieldWidth = $this->fieldWidth - $extraWidth : $this->fieldWidth);
 
 		if (count($errors)) {
 			$html .= '<span class="glyphicon ' . ($errors->has($name))
@@ -177,8 +195,11 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 				: ' glyphicon-ok' . ' form-control-feedback"></span>';
 		}
 		$html .= '</div>'
-			. $errors->first($name, '<p class="help-block col-sm-' . $this->fieldWidth . ' col-sm-offset-' . $this->labelWidth . '">:message</p>')
-			. '</div>';
+			. $errors->first($name, '<p class="help-block col-sm-' . $fieldWidth . ' col-sm-offset-' . $this->labelWidth . '">:message</p>');
+		if ($hasExtras) {
+			$html .= '<div class="col-sm-' . $extraWidth . '">' . $extraElement . '</div>';
+		}
+		$html .= '</div>';
 
 		return $html;
 	}
