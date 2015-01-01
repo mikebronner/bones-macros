@@ -32,7 +32,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $this->select($name, $items, $default, $attributes);
 	}
 
-	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], array $errors = [])
+	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
 		$html .= $this->selectRangeWithInterval($name, $start, $end, $interval, $default, $attributes);
@@ -41,7 +41,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	public function bs_text($label, $name, $value = null, array $options = [], array $errors = [])
+	public function bs_text($label, $name, $value = null, array $options = [], $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
 		$html .= $this->input('text', $name, $value, $options);
@@ -50,7 +50,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	public function bs_password($label, $name, array $options = [], array $errors = [])
+	public function bs_password($label, $name, array $options = [], array $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
 		$html .= $this->input('password', $name, '', $options);
@@ -59,7 +59,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	public function bs_email($label, $name, $value = null, array $options = [], array $errors = [])
+	public function bs_email($label, $name, $value = null, array $options = [], $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
 		$html .= $this->input('email', $name, $value, $options);
@@ -68,7 +68,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	public function bs_url($label, $name, $value = null, array $options = [], array $errors = [])
+	public function bs_url($label, $name, $value = null, array $options = [], $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
 		$html .= $this->input('url', $name, $value, $options);
@@ -77,7 +77,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	public function bs_file($label, $name, array $options = [], array $errors = [])
+	public function bs_file($label, $name, array $options = [], $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
 		$html .= $this->input('file', $name, null, $options);
@@ -86,7 +86,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	public function bs_textarea($label, $name, $value = null, array $options = [], array $errors = [])
+	public function bs_textarea($label, $name, $value = null, array $options = [], $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
 		$html .= $this->textarea($name, $value, $options);
@@ -95,7 +95,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	protected function preHtml($label, $name, array $errors = [])
+	protected function preHtml($label, $name, $errors = null)
 	{
 		$html = '<div class="form-group' . (count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '' . '">'
 			. $this->label($label, $name, ['class' => 'control-label col-sm-3'])
@@ -104,7 +104,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
-	protected function postHtml($name, array $errors = [])
+	protected function postHtml($name, $errors = null)
 	{
 		$html = '';
 
