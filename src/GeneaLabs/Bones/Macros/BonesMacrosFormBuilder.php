@@ -34,81 +34,117 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->selectRangeWithInterval($name, $start, $end, $interval, $default, $attributes);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->selectRangeWithInterval(
+				$name,
+				$start,
+				$end,
+				$interval,
+				$default,
+				$attributes
+			),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
 	public function bs_select($label, $name, $list = array(), $selected = null, array $options = [], $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->select($name, $list, $selected, $options);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->select($name, $list, $selected, $options),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
 	public function bs_text($label, $name, $value = null, array $options = [], $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->input('text', $name, $value, $options);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->input('text', $name, $value, $options),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
 	public function bs_password($label, $name, array $options = [], array $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->input('password', $name, '', $options);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->input('password', $name, '', $options),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
 	public function bs_email($label, $name, $value = null, array $options = [], $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->input('email', $name, $value, $options);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->input('email', $name, $value, $options),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
 	public function bs_url($label, $name, $value = null, array $options = [], $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->input('url', $name, $value, $options);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->input('url', $name, $value, $options),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
 	public function bs_file($label, $name, array $options = [], $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->input('file', $name, null, $options);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->input('file', $name, null, $options),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
 	public function bs_textarea($label, $name, $value = null, array $options = [], $errors = null)
 	{
-		$html = $this->preHtml($label, $name, $errors);
-		$html .= $this->textarea($name, $value, $options);
-		$html .= $this->postHtml($name, $errors);
-
-		return $html;
+		return $this->wrapOutput(
+			$this->textarea($name, $value, $options),
+			$label,
+			$name,
+			$errors
+		);
 	}
 
-	protected function preHtml($label, $name, $errors = null)
+    public function bs_submit($label = null, $value = null, array $options = [], $errors = null)
 	{
-		$html = '<div class="form-group' . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">'
-			. $this->label($name, $label, ['class' => 'control-label col-sm-3'])
-            . '<div class="col-sm-9">';
+		return $this->wrapOutput(
+			$this->input('submit', null, $value, $options),
+			$label,
+			null,
+			$errors
+		);
+	}
+
+	protected function wrapOutput($html = '', $label = null, $name, $errors = null)
+	{
+		$output = $this->preHtml($label, $name, $errors);
+		$output .= $html;
+		$output .= $this->postHtml($name, $errors);
+
+		return $output;
+	}
+
+	protected function preHtml($label = null, $name, $errors = null)
+	{
+		$html = '<div class="form-group' . (is_null($label) ? ' col-offset-sm-3' : '') . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
+		if (! is_null($label)) {
+			$html .= $this->label($name, $label, ['class' => 'control-label col-sm-3']);
+		}
+		$html .= '<div class="col-sm-9">';
 
 		return $html;
 	}
