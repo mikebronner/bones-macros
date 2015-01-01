@@ -36,7 +36,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $this->select($name, $items, $default, $attributes);
 	}
 
-	public function bs_open(array $options = array(), $offset = 0, $labelWidth = 3, $fieldWidth = 9)
+	public function bs_open(array $options = [], $offset = 0, $labelWidth = 3, $fieldWidth = 9)
 	{
 		$this->offset = $offset;
 		$this->labelWidth = $labelWidth;
@@ -44,6 +44,16 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 		return $this->open($options);
 	}
+
+	public function bs_model($model, array $options = [], $offset = 0, $labelWidth = 3, $fieldWidth = 9)
+	{
+		$this->offset = $offset;
+		$this->labelWidth = $labelWidth;
+		$this->fieldWidth = $fieldWidth;
+
+		return $this->model($model, $options);
+	}
+
 
 
 	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], $errors = null, $extraElement = null, $extraWidth = 0)
