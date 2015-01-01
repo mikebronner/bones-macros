@@ -98,7 +98,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 	protected function preHtml($label, $name, $errors = null)
 	{
 		$html = '<div class="form-group' . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">'
-			. $this->label($label, $name, ['class' => 'control-label col-sm-3'])
+			. $this->label($name, $label, ['class' => 'control-label col-sm-3'])
             . '<div class="col-sm-9">';
 
 		return $html;
