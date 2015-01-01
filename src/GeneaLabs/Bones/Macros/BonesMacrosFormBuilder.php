@@ -39,7 +39,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 	public function bs_open(array $options = array(), $offset = 0, $labelWidth = 3, $fieldWidth = 9)
 	{
 		$this->offset = $offset;
-		$this->labelwidth = $labelWidth;
+		$this->labelWidth = $labelWidth;
 		$this->fieldWidth = $fieldWidth;
 
 		return $this->open($options);
@@ -154,11 +154,11 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 	protected function preHtml($label = null, $name, $errors = null)
 	{
-		$html = '<div class="form-group' . (is_null($label) ? ' col-sm-offset-3' : '') . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
+		$html = '<div class="form-group' . (is_null($label) ? ' col-sm-offset-' . $this->labelWidth : '') . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
 		if (! is_null($label)) {
-			$html .= $this->label($name, $label, ['class' => 'control-label col-sm-3']);
+			$html .= $this->label($name, $label, ['class' => 'control-label col-sm-' . $this->labelWidth]);
 		}
-		$html .= '<div class="col-sm-9">';
+		$html .= '<div class="col-sm-' . $this->fieldWidth . '">';
 
 		return $html;
 	}
@@ -173,7 +173,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 				: ' glyphicon-ok' . ' form-control-feedback"></span>';
 		}
 		$html .= '</div>'
-			. $errors->first($name, '<p class="help-block col-sm-9 col-sm-offset-3">:message</p>')
+			. $errors->first($name, '<p class="help-block col-sm-' . $this->fieldWidth . ' col-sm-offset-' . $this->labelWidth . '">:message</p>')
 			. '</div>';
 
 		return $html;
