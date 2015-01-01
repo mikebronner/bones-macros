@@ -167,18 +167,21 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 	protected function wrapOutput($html = '', $label = null, $name, $errors = null, $extraElement = null, $extraWidth = 0)
 	{
-		$output = $this->preHtml($label, $name, $errors);
+		$output = $this->preHtml($label, $name, $errors, $extraElement, $extraWidth);
 		$output .= $html;
 		$output .= $this->postHtml($name, $errors, $extraElement, $extraWidth);
 
 		return $output;
 	}
 
-	protected function preHtml($label = null, $name = null, $errors = null)
+	protected function preHtml($label = null, $name = null, $errors = null, $extraElement = null, $extraWidth = 0)
 	{
+		$hasExtras = (strlen($extraElement) && $extraWidth > 0);
+		$fieldWidth = ($hasExtras ? $fieldWidth = $this->fieldWidth - $extraWidth : $this->fieldWidth);
+
 		$html = '<div class="form-group' . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
 		$html .= $this->label($name, $label, ['class' => 'control-label col-sm-' . $this->labelWidth]);
-		$html .= '<div class="col-sm-' . $this->fieldWidth . '">';
+		$html .= '<div class="col-sm-' . $fieldWidth . '">';
 
 		return $html;
 	}
