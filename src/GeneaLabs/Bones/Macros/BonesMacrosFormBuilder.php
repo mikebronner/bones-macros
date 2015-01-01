@@ -133,13 +133,13 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		);
 	}
 
-    public function bs_submit($label = null, $value = null, array $options = [], $errors = null, $withCancelButton = false)
+    public function bs_submit($label = null, $value = null, array $options = [], $errors = null, $cancelUrl = null)
 	{
 		$html = $this->preHtml(null, null, $errors);
 
-		if ($withCancelButton) {
+		if ($cancelUrl) {
 			$html = '<div class="form-group"><div class="col-sm-' . $this->labelWidth . '">'
-		        . link_to($this->url->previous(), 'Cancel', ['class' => 'btn btn-cancel pull-right'])
+		        . link_to($cancelUrl, 'Cancel', ['class' => 'btn btn-cancel pull-right'])
 				. '</div><div class="col-sm-' . $this->fieldWidth . '">';
 		}
 
