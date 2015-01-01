@@ -41,6 +41,15 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
+	public function bs_select($label, $name, $list = array(), $selected = null, array $options = [], $errors = null)
+	{
+		$html = $this->preHtml($label, $name, $errors);
+		$html .= $this->select($name, $list, $selected, $options);
+		$html .= $this->postHtml($name, $errors);
+
+		return $html;
+	}
+
 	public function bs_text($label, $name, $value = null, array $options = [], $errors = null)
 	{
 		$html = $this->preHtml($label, $name, $errors);
