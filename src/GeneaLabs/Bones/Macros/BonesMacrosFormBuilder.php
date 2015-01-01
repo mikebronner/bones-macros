@@ -2,6 +2,10 @@
 
 class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 {
+	public $offset;
+	public $labelWidth;
+	public $fieldWidth;
+
     public function cancelButton()
     {
         return '<a href="' .
@@ -31,6 +35,16 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 		return $this->select($name, $items, $default, $attributes);
 	}
+
+	public function bs_open(array $options = array(), $offset = 0, $labelWidth = 3, $fieldWidth = 9)
+	{
+		$this->offset = $offset;
+		$this->labelwidth = $labelWidth;
+		$this->fieldWidth = $fieldWidth;
+
+		return $this->open($options);
+	}
+
 
 	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], $errors = null)
 	{
@@ -140,7 +154,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 	protected function preHtml($label = null, $name, $errors = null)
 	{
-		$html = '<div class="form-group' . (is_null($label) ? ' col-offset-sm-3' : '') . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
+		$html = '<div class="form-group' . (is_null($label) ? ' col-sm-offset-3' : '') . ((count($errors) > 0) ? (($errors->has($name)) ? ' has-feedback has-error' : ' has-feedback has-success') : '') . '">';
 		if (! is_null($label)) {
 			$html .= $this->label($name, $label, ['class' => 'control-label col-sm-3']);
 		}
