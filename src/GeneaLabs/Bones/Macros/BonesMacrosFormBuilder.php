@@ -54,7 +54,34 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $this->model($model, $options);
 	}
 
+	public function bs_inputGroup($innerHtml, array $attributes = [], $preAddonHtml = null, $postAddonHtml = null)
+	{
+		$attributesHtml = '';
 
+		if (! array_key_exists('class', $attributes)) {
+			$attributes['class'] = 'input-group';
+		}
+
+		foreach ($attributes as $key => $value) {
+			if ($key == "class" && false === strpos($value, 'input-group')) {
+				$value .= ' input-group';
+			}
+			
+			$attributesHtml .= ' ' . $key . '="' . trim($value) . '"';
+		}
+
+		$html = '<div class="input-group date" id="datetimepicker1">';
+		if ($preAddonHtml) {
+			$html .= '<span class="input-group-addon">' . $preAddonHtml . '</span>';
+		}
+		$html .= $innerHtml;
+		if ($postAddonHtml) {
+			$html .= '<span class="input-group-addon">' . $postAddonHtml . '</span>';
+		}
+		$html .= '</div>';
+
+		return $html;
+	}
 
 	public function bs_selectRangeWithInterval($label, $name, $start, $end, $interval, $default = null, $attributes = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
