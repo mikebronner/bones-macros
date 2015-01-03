@@ -254,9 +254,9 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		$fieldWidth = ($hasExtras ? $fieldWidth = $this->fieldWidth - $extraWidth : $this->fieldWidth);
 
 		if (count($errors)) {
-			$html .= '<span class="glyphicon ' . ($errors->has($name))
+			$html .= '<span class="glyphicon ' . ($errors->has($name)
 				? ' glyphicon-remove'
-				: ' glyphicon-ok' . ' form-control-feedback"></span>';
+				: ' glyphicon-ok') . ' form-control-feedback"></span>';
 		}
 		$html .= '</div>'
 			. $errors->first($name, '<p class="help-block col-sm-' . $fieldWidth . ' col-sm-offset-' . $this->labelWidth . '">:message</p>');
