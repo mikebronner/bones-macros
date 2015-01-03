@@ -1,5 +1,7 @@
 <?php namespace GeneaLabs\Bones\Macros;
 
+use Illuminate\Support\Facades\HTML;
+
 class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 {
 	public $offset;
@@ -109,7 +111,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		);
 	}
 
-	public function bs_select($label, $name, $list = array(), $selected = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
+	public function bs_select($label, $name, $list = [], $selected = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->select($name, $list, $selected, $options),
@@ -133,7 +135,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		);
 	}
 
-	public function bs_password($label, $name, array $options = [], array $errors = null, $extraElement = null, $extraWidth = 0)
+	public function bs_password($label, $name, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
 			$this->input('password', $name, '', $options),
@@ -191,6 +193,21 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 			$extraElement,
 			$extraWidth
 		);
+	}
+
+	public function bs_checkbox($label, $name, $value = 1, $checked = null, array $options = [], $errors = null, $extraElement = null, $extraWidth = 0)
+	{
+		$hasExtras = (strlen($extraElement) && $extraWidth > 0);
+		$fieldWidth = ($hasExtras ? $fieldWidth = $this->fieldWidth - $extraWidth : $this->fieldWidth);
+
+		$html = '<div class="form-group"><div class="col-sm-' . $fieldWidth . ' col-sm-offset-' . $this->labelWidth . '"><div class="checkbox">';
+		$html .= '<label>' . $this->checkbox($name, $value, ($checked ? 'checked' : ''), $options) . ' ' . $label . '</label></div></div>';
+		if ($hasExtras) {
+			$html .= '<div class="col-sm-' . $extraWidth . '">' . $extraElement . '</div>';
+		}
+		$html .= '</div>';
+
+		return $html;
 	}
 
 	public function bs_submit($label = null, $value = null, array $options = [], $errors = null, $cancelUrl = null)
