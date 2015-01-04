@@ -206,7 +206,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 	public function bs_submit($label = null, $value = null, array $options = [], $cancelUrl = null)
 	{
-		$html = $this->preHtml(null, null, $this->errors);
+		$html = $this->preHtml();
 
 		if (! is_null($cancelUrl)) {
 			$html = '<div class="form-group"><div class="col-sm-' . $this->labelWidth . '">'
