@@ -208,13 +208,13 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 	{
 		if ((array_key_exists('class', $options))
 			&& (strpos($options['class'], 'switch') >= 0)) {
-			$options['class'] .= [' switch'];
+			$options['class'] .= ' switch';
 		} else {
-			$options[] = ['class' => 'switch'];
+			$options['class'] = 'switch';
 		}
 
 		return $this->wrapOutput(
-			$this->checkbox($name, $value, ($checked ? 'checked' : ''), $options),
+			$this->checkbox($name, $value, ($checked ? 'checked' : null), $options),
 			$label,
 			$name,
 			$extraElement,
