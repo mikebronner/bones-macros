@@ -206,7 +206,13 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 	public function bs_switch($label, $name, $value = 1, $checked = null, array $options = [], $extraElement = null, $extraWidth = 0)
 	{
-		$options['class'] .= [' switch'];
+		if ((array_key_exists('class', $options))
+			&& (strpos($options['class'], 'switch') >= 0)) {
+			$options['class'] .= [' switch'];
+		} else {
+			$options[] = ['class' => 'switch'];
+		}
+
 		return $this->wrapOutput(
 			$this->checkbox($name, $value, ($checked ? 'checked' : ''), $options),
 			$label,
