@@ -270,7 +270,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 				? ' glyphicon-remove'
 				: ' glyphicon-ok') . ' form-control-feedback"></span>';
 		}
-		$html .= $this->errors->first($name, '<p class="help-block col-sm-' . $fieldWidth . ' col-sm-offset-' . $this->labelWidth . '">:message</p>')
+		$html .= $this->errors->first($name, '<p class="help-block">:message</p>')
 			. '</div>';
 		if ($hasExtras) {
 			$html .= '<div class="col-sm-' . $extraWidth . '">' . $extraElement . '</div>';
