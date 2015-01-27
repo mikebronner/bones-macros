@@ -204,6 +204,24 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		return $html;
 	}
 
+	public function bs_switch($label, $name, $value = 1, $checked = null, array $options = [], $extraElement = null, $extraWidth = 0)
+	{
+		if ((array_key_exists('class', $options))
+			&& (strpos($options['class'], 'switch') >= 0)) {
+			$options['class'] .= ' switch';
+		} else {
+			$options['class'] = 'switch';
+		}
+
+		return $this->wrapOutput(
+			$this->checkbox($name, $value, ($checked ? 'checked' : null), $options),
+			$label,
+			$name,
+			$extraElement,
+			$extraWidth
+		);
+	}
+
 	public function bs_submit($label = null, $value = null, array $options = [], $cancelUrl = null)
 	{
 		$html = $this->preHtml();
@@ -252,8 +270,8 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 				? ' glyphicon-remove'
 				: ' glyphicon-ok') . ' form-control-feedback"></span>';
 		}
-		$html .= '</div>'
-			. $this->errors->first($name, '<p class="help-block col-sm-' . $fieldWidth . ' col-sm-offset-' . $this->labelWidth . '">:message</p>');
+		$html .= $this->errors->first($name, '<p class="help-block">:message</p>')
+			. '</div>';
 		if ($hasExtras) {
 			$html .= '<div class="col-sm-' . $extraWidth . '">' . $extraElement . '</div>';
 		}
