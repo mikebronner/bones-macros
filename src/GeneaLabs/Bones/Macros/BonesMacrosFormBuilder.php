@@ -162,7 +162,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		$list = implode('', $html);
 
 		return $this->wrapOutput(
-			'<div class="dropdown"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' . $label . '<span class="fa fa-caret-down"></span></button><ul{$options}>{$list}</ul></div>',
+			'<div class="dropdown"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' . $label . '<span class="fa fa-caret-down"></span></button><ul' . "$options}>{$list}</ul></div>",
 			$label,
 			$name,
 			$extraElement,
