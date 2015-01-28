@@ -123,6 +123,80 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		);
 	}
 
+	public function bs_dropdown($label, $name, $list = [], $selected = null, $options = [], $extraElement = null, $extraWidth = 0)
+	{
+		return $this->bs_dropdownWithIcons($label, $name, $list, null, $selected, $options, $extraElement, $extraWidth);
+	}
+
+	public function bs_dropdownWithIcons($label, $name, $list = [], $icons = [], $selected = null, $options = [], $extraElement = null, $extraWidth = 0)
+	{
+		$selected = $this->getValueAttribute($name, $selected);
+		$options['id'] = $this->getIdAttribute($name, $options);
+		$html = [];
+
+		if ( ! isset($options['name'])) $options['name'] = $name;
+
+
+		foreach ($list as $value => $display)
+		{
+			$icon = (array_key_exists($value, $icons)) ?: $icons[$value];
+			$html[] = $this->bs_getDropdownItems($display, $value, $selected, $icon);
+		}
+
+		$options = $this->html->attributes($options);
+		if (array_key_exists('class', $options)) {
+			$options['class'] .= ' dropdown-menu';
+		} else {
+			$options['class'] = 'dropdown-menu';
+		}
+		$list = implode('', $html);
+
+		return $this->wrapOutput(
+			"<ul{$options}>{$list}</ul>",
+			$label,
+			$name,
+			$extraElement,
+			$extraWidth
+		);
+	}
+
+	public function bs_getDropdownItems($display, $value, $selected, $icon)
+	{
+		if (is_array($display))
+		{
+			return $this->bs_dropdownItemGroup($display, $value, $selected, $icon);
+		}
+
+		return $this->bs_dropdownItem($display, $value, $selected, $icon);
+	}
+
+	protected function bs_dropdownItemGroup($list, $label, $selected, $icon)
+	{
+		$html = [];
+
+		foreach ($list as $value => $display)
+		{
+			$html[] = $this->bs_dropdownItem($display, $value, $selected, $icon);
+		}
+
+		return '<li role="presentation" class="dropdown-header">' . e($label) . '</li>' . implode('', $html);
+	}
+
+	protected function bs_dropdownItem($display, $value, $selected, $icon)
+	{
+		$selected = $this->getSelectedValue($value, $selected);
+
+		$options = array('value' => e($value), 'selected' => $selected);
+		if (isset($icon)) {
+			$icon = '<span class="' . $icon . '"></span>';
+		} else {
+			$icon = '';
+		}
+
+		return '<li' . $this->html->attributes($options) . '>' . $icon . e($display) . '</li>';
+	}
+
+
 	public function bs_text($label, $name, $value = null, array $options = [], $extraElement = null, $extraWidth = 0)
 	{
 		return $this->wrapOutput(
