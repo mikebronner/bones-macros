@@ -143,12 +143,12 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 			$html[] = $this->bs_getDropdownItems($display, $value, $selected, $icon);
 		}
 
-		$options = $this->html->attributes($options);
 		if (array_key_exists('class', $options)) {
 			$options['class'] .= ' dropdown-menu';
 		} else {
 			$options['class'] = 'dropdown-menu';
 		}
+		$options = $this->html->attributes($options);
 		$list = implode('', $html);
 
 		return $this->wrapOutput(
