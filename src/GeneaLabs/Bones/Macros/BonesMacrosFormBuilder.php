@@ -139,7 +139,7 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 
 		foreach ($list as $value => $display)
 		{
-			$icon = (array_key_exists($value, $icons)) ?: $icons[$value];
+			$icon = (is_array($icons) && array_key_exists($value, $icons)) ?: $icons[$value];
 			$html[] = $this->bs_getDropdownItems($display, $value, $selected, $icon);
 		}
 
