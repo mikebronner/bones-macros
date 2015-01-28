@@ -148,11 +148,21 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		} else {
 			$options['class'] = 'dropdown-menu';
 		}
+		if (array_key_exists('role', $options)) {
+			$options['role'] .= ' menu';
+		} else {
+			$options['role'] = 'menu';
+		}
+		if (array_key_exists('aria-expanded', $options)) {
+			$options['aria-expanded'] .= ' true';
+		} else {
+			$options['aria-expanded'] = 'true';
+		}
 		$options = $this->html->attributes($options);
 		$list = implode('', $html);
 
 		return $this->wrapOutput(
-			"<ul{$options}>{$list}</ul>",
+			'<div class="dropdown"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' . $label . '<span class="fa fa-caret-down"></span></button><ul{$options}>{$list}</ul></div>',
 			$label,
 			$name,
 			$extraElement,
