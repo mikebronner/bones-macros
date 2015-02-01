@@ -112,6 +112,17 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 		);
 	}
 
+	public function bs_combobox($label, $name, $list = [], $selected = null, array $options = [], $extraElement = null, $extraWidth = 0)
+	{
+		return $this->wrapOutput(
+			$this->select($name, $list, $selected, $options),
+			$label,
+			$name,
+			$extraElement,
+			$extraWidth
+		);
+	}
+
 	public function bs_select($label, $name, $list = [], $selected = null, array $options = [], $extraElement = null, $extraWidth = 0, $useLabelAsPlaceholder = false)
 	{
 		return $this->bs_selectWithIcons($label, $name, $list, null, $selected, $options, $extraElement, $extraWidth, $useLabelAsPlaceholder);
