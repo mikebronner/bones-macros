@@ -360,12 +360,15 @@ class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
 			$html .= '<span class="glyphicon ' . ($this->errors->has($name)
 					? ' glyphicon-remove'
 					: ' glyphicon-ok') . ' form-control-feedback"></span>';
+			$html .= $this->errors->first($name, '<p class="help-block">:message</p>');
 		}
-		$html .= $this->errors->first($name, '<p class="help-block">:message</p>');
+	
 		$html .= '</div>';
+	
 		if ($hasExtras) {
 			$html .= '<div class="col-sm-' . $extraWidth . '">' . $extraElement . '</div>';
 		}
+	
 		$html .= '</div>';
 
 		return $html;
