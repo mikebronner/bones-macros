@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Collective\Html\FormBuilder
+ * @see \GeneaLabs\Bones\Macros\BonesMacrosFormBuilder
  */
 class BonesMacrosFormFacade extends Facade
 {
