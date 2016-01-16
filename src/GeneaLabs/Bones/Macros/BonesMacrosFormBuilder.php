@@ -1,8 +1,9 @@
 <?php namespace GeneaLabs\Bones\Macros;
 
-use Illuminate\Support\Facades\HTML;
+use Collective\Html\HtmlFacade as HTML;
+use Collective\Html\FormBuilder;
 
-class BonesMacrosFormBuilder extends \Illuminate\Html\FormBuilder
+class BonesMacrosFormBuilder extends FormBuilder
 {
 	public $errors;
 	public $offset;
