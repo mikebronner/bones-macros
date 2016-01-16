@@ -37,7 +37,7 @@ class BonesMacrosServiceProvider extends \Illuminate\Html\HtmlServiceProvider
      */
     protected function registerHtmlBuilder()
     {
-        $this->app->bindShared('html', function($app)
+        $this->app->singleton('html', function($app)
         {
             return new BonesMacrosHtmlBuilder($app['url']);
         });
@@ -50,7 +50,7 @@ class BonesMacrosServiceProvider extends \Illuminate\Html\HtmlServiceProvider
      */
     protected function registerFormBuilder()
     {
-        $this->app->bindShared('form', function($app)
+        $this->app->singleton('form', function($app)
         {
             return new BonesMacrosFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
         });
