@@ -1,10 +1,8 @@
 <?php namespace GeneaLabs\Bones\Macros;
 
-/**
- * Class HtmlBuilder
- * @package InvestorExperts\HTML
- */
-class BonesMacrosHtmlBuilder extends \Illuminate\Html\HtmlBuilder
+use Collective\Html\HtmlBuilder;
+
+class BonesMacrosHtmlBuilder extends HtmlBuilder
 {
 	public static function slugify($text)
 	{
