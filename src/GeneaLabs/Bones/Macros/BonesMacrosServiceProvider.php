@@ -40,7 +40,7 @@ class BonesMacrosServiceProvider extends ServiceProvider
     {
         $this->app->singleton('html', function($app)
         {
-            return new BonesMacrosHtmlBuilder($app['url']);
+            return new BonesMacrosHtmlBuilder($app['url'], $app['view']);
         });
     }
 
