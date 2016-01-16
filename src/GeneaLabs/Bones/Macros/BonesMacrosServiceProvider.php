@@ -53,7 +53,7 @@ class BonesMacrosServiceProvider extends ServiceProvider
     {
         $this->app->singleton('form', function($app)
         {
-            return new BonesMacrosFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
+            return new BonesMacrosFormBuilder($app['html'], $app['url'], $app['view'], $app['session.store']->getToken());
         });
     }
 
