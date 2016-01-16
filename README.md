@@ -4,10 +4,10 @@
 
 ## Installation
 
-To install bones-flash as a stand-alone module:
+To install bones-macros in Laravel 5.2:
 
 ```sh
-composer require "genealabs/bones-macros":"*"
+composer require "genealabs/bones-macros":"0.3.*"
 ```
 
 or add it to you composer.json file:
@@ -15,10 +15,12 @@ or add it to you composer.json file:
 ```json
     "require": {
         /* ... */,
-        "genealabs/bones-macros": "*"
+        "genealabs/bones-macros": "0.3.*"
     },
     /* ... */
 ```
+
+If you are using Laravel < 5.2 use version `0.2.*`.
 
 And then add the service provider to your app.php config file:
 ```php
