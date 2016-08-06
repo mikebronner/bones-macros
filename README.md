@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/GeneaLabs/bones-macros.svg?branch=master)](https://travis-ci.org/GeneaLabs/bones-macros) [![Latest Stable Version](https://poser.pugx.org/genealabs/bones-macros/v/stable.svg)](https://packagist.org/packages/genealabs/bones-macros) [![Latest Unstable Version](https://poser.pugx.org/genealabs/bones-macros/v/unstable.svg)](https://packagist.org/packages/genealabs/bones-macros) [![License](https://poser.pugx.org/genealabs/bones-macros/license.svg)](https://packagist.org/packages/genealabs/bones-macros)
+> # THIS PACKAGE IS NO LONGER MAINTAINED, USE https://github.com/GeneaLabs/laravel-casts instead.
 
 # Laravel Bones Macros (bones-macros) 
 
